@@ -1,0 +1,63 @@
+{
+  "expo": {
+    "name": "CSOCCC Field App",
+    "slug": "csoccc-field-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#008751"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "ng.gov.fmld.csoccc",
+      "infoPlist": {
+        "NSCameraUsageDescription": "CSOCCC Field App needs camera access to capture incident evidence photos and videos",
+        "NSMicrophoneUsageDescription": "CSOCCC Field App needs microphone access to record audio evidence and voice reports",
+        "NSPhotoLibraryUsageDescription": "CSOCCC Field App needs photo library access to attach existing photos and videos as evidence",
+        "NSLocationWhenInUseUsageDescription": "CSOCCC Field App needs location access to accurately report incident locations and provide GPS coordinates",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "CSOCCC Field App needs background location access for emergency tracking and officer safety"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#008751"
+      },
+      "package": "ng.gov.fmld.csoccc",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_BACKGROUND_LOCATION"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "scheme": "csoccc",
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      "expo-location",
+      "expo-camera",
+      "expo-image-picker",
+      "expo-av",
+      "expo-sqlite"
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      }
+    }
+  }
+}
