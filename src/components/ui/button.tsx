@@ -7,10 +7,11 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link'
   size?: 'default' | 'sm' | 'lg' | 'icon'
+  asChild?: boolean
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'default', size = 'default', ...props }, ref) => {
+  ({ className, variant = 'default', size = 'default', asChild = false, children, ...props }, ref) => {
     const variantClasses = {
       default: 'bg-fmld-green hover:bg-fmld-green-dark text-white',
       destructive: 'bg-red-500 hover:bg-red-600 text-white',
@@ -27,17 +28,30 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       icon: 'h-10 w-10',
     }
 
+    const buttonClasses = cn(
+      'inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+      variantClasses[variant],
+      sizeClasses[size],
+      className
+    )
+
+    if (asChild) {
+      // When asChild is true, apply button styles to the child element
+      return React.cloneElement(children as React.ReactElement, {
+        className: cn(buttonClasses, (children as React.ReactElement)?.props?.className),
+        ref,
+        ...props,
+      })
+    }
+
     return (
       <button
-        className={cn(
-          'inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
-          variantClasses[variant],
-          sizeClasses[size],
-          className
-        )}
+        className={buttonClasses}
         ref={ref}
         {...props}
-      />
+      >
+        {children}
+      </button>
     )
   }
 )
