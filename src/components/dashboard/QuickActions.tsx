@@ -1,5 +1,7 @@
 // src/components/dashboard/QuickActions.tsx
 
+'use client'
+
 import { Button } from '@/components/ui/button'
 
 export function QuickActions() {
